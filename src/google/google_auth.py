@@ -7,7 +7,7 @@ from starlette.responses import HTMLResponse, RedirectResponse
 from authlib.integrations.starlette_client import OAuth, OAuthError
 
 app = FastAPI()
-app.add_middleware(SessionMiddleware, secret_key="!secret")
+app.add_middleware(SessionMiddleware, secret_key="KeepThisSecret")
 
 config = Config('.env')
 oauth = OAuth(config)
