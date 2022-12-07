@@ -27,12 +27,20 @@ async def homepage(request: Request):
     user = request.session.get('user')
     if user:
         data = json.dumps(user)
-        html = (
+        name = user['name']
+        email = user['email']
+        pict = user['picture']
+        html = "<h1>Info from Google</h1>"
+
+        html += "<img src={0} alt={1}>".format(pict, name)
+        html += "<p>name <em>{0}</em>.</p>".format(name)
+        html += "<p>email <em>{0}</em>.</p>".format(email)
+        html += (
             f'<pre>{data}</pre>'
             '<a href="/logout">logout</a>'
         )
         return HTMLResponse(html)
-    return HTMLResponse('<a href="/login">login</a>')
+    return HTMLResponse('<a href="/login">login using Google</a>')
 
 
 @app.get('/login')
